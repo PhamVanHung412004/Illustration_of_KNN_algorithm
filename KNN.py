@@ -64,6 +64,7 @@ while runing:
     x_mouse , y_mouse = pygame.mouse.get_pos()
     
     show_mouse = Show_mouse(x_mouse, y_mouse, font,colors.BLACK,screen)
+    print(type(screen))
     if (50 <= x_mouse <= 1100 and 50 <= y_mouse <= 600):
         show_mouse.show()
     
@@ -85,16 +86,17 @@ while runing:
     run_knn = font1.render("RUN KNN" , True, colors.BLACK)
     deleter_labels = font1.render("DELETE LABEL", True, colors.BLACK)
     reset_button = font1.render("RESET" , True, colors.BLACK)
-
     title = font3.render("Illustration of the k-nearest neighbors algorithm",True,colors.BLACK)
+    print(colors.BLACK)
     screen.blit(title,(200,600))
+    # print(colors.BLACK)
     draw_ox_oy = Draw_ox_oy(50, 50, 50, 600, 50, 600, 1100, 600, colors.BLACK, up, ngang,screen)
     draw_ox_oy.show()
 
     #button n_clusters
     rect = draw_rect_backgroud(1225,20,170,50,colors)
     rect.show()
-
+    print(colors)
     # + -
     rect = draw_rect_backgroud(1225,80,80,50,colors)
     rect.show()
