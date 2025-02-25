@@ -5,13 +5,6 @@ height = 1400
 witd = 750
 screen = pygame.display.set_mode((height,witd))
 
-'''
-font : pygame.surface.Surface
-colors. : tuple()
-screen : pygame.surface.Surface
-'''
-
-
 class COLORS:
     def __init__(self) -> None:
         self.BACKGROUND = (255,255,255)

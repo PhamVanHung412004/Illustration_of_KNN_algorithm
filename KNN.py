@@ -7,15 +7,15 @@ fonts = Font()
 
 class Name_button:
     def __init__(self,
-                 K_Kmeans_button,
-                dau_cong,
-                dau_tru,
+                 K_Kmeans_button : pygame.surface.Surface,
+                dau_cong : pygame.surface.Surface,
+                dau_tru : pygame.surface.Surface,
                 # button_random,
-                button_run_kmeans,
-                k_knn,
-                run_knn,
-                deleter_labels,
-                reset_button):
+                button_run_kmeans : pygame.surface.Surface,
+                k_knn : pygame.surface.Surface,
+                run_knn : pygame.surface.Surface,
+                deleter_labels : pygame.surface.Surface,
+                reset_button : pygame.surface.Surface) -> None:
         self.K_Kmeans_button = K_Kmeans_button
         self.dau_cong = dau_cong
         self.dau_tru = dau_tru
@@ -26,7 +26,7 @@ class Name_button:
         self.deleter_labels = deleter_labels
         self.reset_button = reset_button
             
-    def show_name_button(self): 
+    def show_name_button(self) -> None: 
         screen.blit(self.K_Kmeans_button,(1230,25))
         screen.blit(self.dau_cong,(1255,80))
         screen.blit(self.dau_tru,(1225 + 80 + 10 + 30 + 5,78)) 
