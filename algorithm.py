@@ -22,7 +22,20 @@ class COLORS:
         self.GRASS = (55,155,65)
 
 class Draw_ox_oy:
-    def __init__(self,ox1 : float,ox2 : float,ox3 : float,ox4 : float,oy1 : float,oy2 : float,oy3 : float,oy4 : float,BLACK : tuple,up : pygame.surface.Surface, ngang : pygame.surface.Surface,screen : pygame.surface.Surface):
+    def __init__(self,
+        ox1: float = None,
+        ox2: float = None,
+        ox3: float = None, 
+        ox4: float = None,
+        oy1: float = None,
+        oy2: float = None,
+        oy3: float = None,
+        oy4: float = None,
+        BLACK: tuple[int | float | list] = None,
+        up: pygame.surface.Surface = None, 
+        ngang: pygame.surface.Surface = None,
+        screen: pygame.surface.Surface = None) -> None:
+        
         self.ox1 = ox1
         self.ox2 = ox2
         self.ox3 = ox3
@@ -42,7 +55,13 @@ class Draw_ox_oy:
         self.screen.blit(self.ngang,(1100,588))
 
 class Show_mouse:
-    def __init__(self,x_mouse : float,y_mouse : float,font_mouse : float,BLACK : float,screen : pygame.surface.Surface) -> None:
+    def __init__(self,
+        x_mouse: float = None,
+        y_mouse: float = None,
+        font_mouse: float = None,
+        BLACK: float = None,
+        screen: pygame.surface.Surface = None) -> None:
+
         self.x_mouse = x_mouse
         self.y_mouse = y_mouse
         self.font_mouse = font_mouse
@@ -53,7 +72,13 @@ class Show_mouse:
         self.screen.blit(text_mouse, (self.x_mouse + 10, self.y_mouse))
 
 class draw_rect_backgroud:
-    def __init__(self,x : float ,y : float,w : float,h : float,colors) -> None:
+    def __init__(self,
+        x: float = None,
+        y: float = None,
+        w: float = None,
+        h: float = None,
+        colors : COLORS() = None) -> None:
+
         self.x = x
         self.y = y
         self.w = w
@@ -64,66 +89,22 @@ class draw_rect_backgroud:
         pygame.draw.rect(screen,self.colors.BLACK,(self.x,self.y, self.w, self.h))
         pygame.draw.rect(screen,self.colors.WHITE,(self.x + 5, self.y + 5, self.w - 10, self.h - 10))
 
-
-
-# class input_circle:
-#     def __init__(self,x_center,y_center,r,color,kniess,screen):
-#         self.x_center = x_center
-#         self.y_center = y_center
-#         self.r = r
-#         self.color = color
-#         self.kniess = kniess
-#         self.screen = screen
-
-# class draw_circle(input_circle): ...
-    # def __init__(self):
-    #     super().__init__(self,x_center,y_center,r,color,kniess,screen)
-    # def show_circle(self):
-    #     pygame.draw.circle(self.screen,self.color,(x_center + 50, 600 - y_center),kniess)
-        
-class input_rect:...
-    # def __init__(self,begin1,end1,w,h,color,kniess,screen):
-    #     self.begin1 = begin1
-    #     self.end1 = end1
-    #     self.w = w
-    #     self.h = h
-    #     self.color = color
-    #     self.kniess = kniess
-    #     self.screen = screen
-
-class draw_rect(input_rect): ...
-    # def __init__(self):
-    #     super().__init__(self,begin1,end1,w,h,color,kniess,screen)
-    # def show_rect(self):
-    #     pygame.draw.rect(self.screen,self.color,(self.begin1, self.end1, self.w, self.h),self.kniess)
-
-class Font: ...
-    # def __init__(self):
-def prefix_sum():
-    ...
-
-# color = COLORS()
-
-
-def points_black_rect() -> list:
+def points_black_rect() -> list[tuple]:
     rect_black = [(50,610,100,40),(50,655,100,40),(165,610,200,50),(375,610,200,50),(585,610,200,50),(790,610,200,50),(1000,610,90,50)]
     return rect_black
 
-def points_white_circle() -> list:
+def points_white_circle() -> list[tuple]:
     rect_white = [(55,615,90,30),(55,660,40,30),(170,615,190,40),(380,615,190,40),(590,615,190,40),(795,615,190,40),(1005,615,80,40)]
     return rect_white
 
-def COLORS_LABELS():
-    ...
-
-def Linear_Search(arr : list,x : int) -> list:
+def Linear_Search(arr: list[int | float | list] = None,x: int = None) -> list[int]:
     list_index = []
     for i in range(len(arr)):
         if (arr[i][0] == x):
             list_index.append(arr[i][1])
     return list_index
 
-def Binary_Search(arr : list,x : int) -> int:
+def Binary_Search(arr: list[int | float] = None,x: int = None) -> int:
     ans = -1
     r = 0
     l = len(arr) - 1
@@ -137,7 +118,7 @@ def Binary_Search(arr : list,x : int) -> int:
             r = mid - 1
     return ans
 
-def check_value(arr1 : list,arr2 : list) -> int:
+def check_value(arr1: list[int | float | list] = None, arr2: list[int | float] = None) -> int:
     label = -1
     for i in range(len(arr1)):
         min_distance = 10**9
@@ -148,7 +129,7 @@ def check_value(arr1 : list,arr2 : list) -> int:
     if (label != -1):
         return label
 
-def array_counts(arr : list,K_NN : int) -> tuple:
+def array_counts(arr: list[int | float | list] = None, K_NN: int = None) -> tuple[int | list[int]]:
     counts = [0]*const_int_mod
     labels = []
     check = set()
@@ -170,7 +151,7 @@ def array_counts(arr : list,K_NN : int) -> tuple:
     return (begin,end,counts,distance_labels)
 
 
-def lower_bound(arr : list,x : int) -> int:
+def lower_bound(arr: list[float | int | float] = None,x: int = None) -> int:
     ans = -1
     l = 0
     r = len(arr) - 1
@@ -196,10 +177,8 @@ def lower_bound(arr : list,x : int) -> int:
                 r = mid - 1
     return ans
 
-
 colors = COLORS()
-
-def colors_init(colors) -> dict:
+def colors_init(colors: COLORS = None) -> dict:
     colorss = {0 : colors.GREEN,
                 1 : colors.BLUE,
                 2 : colors.YELLOW,
@@ -210,7 +189,7 @@ def colors_init(colors) -> dict:
                 7 : colors.GRASS}
     return colorss
 
-def upper_bound(arr : list,x :int) -> int:
+def upper_bound(arr: list[float | int | list] = None, x: int = None) -> int:
     ans = -1
     l = 0
     r = len(arr) - 1
@@ -236,14 +215,13 @@ def upper_bound(arr : list,x :int) -> int:
                 r = mid - 1
     return ans
 
-def calc_distance(p1 : list,p2 : list) -> float:
+def calc_distance(p1 : list[int | float] = None,p2 : list[int | float] = None) -> float:
     return sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
 
-def search_and_distance(points : list,clusters : list) -> tuple:
+def search_and_distance(points : list[int | float] = None, clusters : list[int | float] = None) -> tuple[list]:
     labels_values = []
     labels = []
     index_distance = []
-    # print(points)
     for i in points: #O(n)
         min_points = []
         for c in clusters: # O(n)
@@ -257,7 +235,7 @@ def search_and_distance(points : list,clusters : list) -> tuple:
         index_distance.append([index_labels,min_points[index_labels]])
     return (labels_values, labels, index_distance)
 
-def prefix_sum(arr : list) -> list:
+def prefix_sum(arr: list[int | float | list] = None) -> list[int]:
     arr_new = [0]*len(arr)
     arr_new[0] = arr[0][1]
     for i in range(1,len(arr)):

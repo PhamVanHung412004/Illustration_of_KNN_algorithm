@@ -1,25 +1,21 @@
 from sklearn.cluster import KMeans
-from init_class import pygame,calc_distance,array_counts,Linear_Search,check_value,Draw_ox_oy,COLORS,colors_init,Font,Show_mouse,draw_rect_backgroud,Draw_ox_oy,screen
-
+from algorithm import pygame,calc_distance,array_counts,Linear_Search,check_value,Draw_ox_oy,COLORS,colors_init,Show_mouse,draw_rect_backgroud,Draw_ox_oy,screen
 colors = COLORS()
 COLORS_LABELS = colors_init(colors)
-fonts = Font()
 
 class Name_button:
     def __init__(self,
-                 K_Kmeans_button : pygame.surface.Surface,
-                dau_cong : pygame.surface.Surface,
-                dau_tru : pygame.surface.Surface,
-                # button_random,
-                button_run_kmeans : pygame.surface.Surface,
-                k_knn : pygame.surface.Surface,
-                run_knn : pygame.surface.Surface,
-                deleter_labels : pygame.surface.Surface,
-                reset_button : pygame.surface.Surface) -> None:
+                 K_Kmeans_button: pygame.surface.Surface,
+                dau_cong: pygame.surface.Surface,
+                dau_tru: pygame.surface.Surface,
+                button_run_kmeans: pygame.surface.Surface,
+                k_knn: pygame.surface.Surface,
+                run_knn: pygame.surface.Surface,
+                deleter_labels: pygame.surface.Surface,
+                reset_button: pygame.surface.Surface) -> None:
         self.K_Kmeans_button = K_Kmeans_button
         self.dau_cong = dau_cong
         self.dau_tru = dau_tru
-        # self.button_random = button_random
         self.button_run_kmeans = button_run_kmeans
         self.k_knn = k_knn
         self.run_knn = run_knn
@@ -30,7 +26,6 @@ class Name_button:
         screen.blit(self.K_Kmeans_button,(1230,25))
         screen.blit(self.dau_cong,(1255,80))
         screen.blit(self.dau_tru,(1225 + 80 + 10 + 30 + 5,78)) 
-        # screen.blit(self.button_random,)
         screen.blit(self.button_run_kmeans,(1230,145))
         screen.blit(self.k_knn,(1250,205))
         screen.blit(self.dau_cong,(1255,260))
@@ -39,6 +34,26 @@ class Name_button:
         screen.blit(self.run_knn,(1225 + 30,267 + 60))
         screen.blit(self.deleter_labels,(1225,385))
         screen.blit(self.reset_button,(1270,445))
+
+def Check_and_show(
+        labels: list[int],
+        value_check: int,
+        points: [int | float | list],
+        COLORS_LABELS: COLORS | dict) -> None:
+
+    if (type(COLORS_LABELS) == COLORS):
+        try:
+            for i in range(len(points)):
+                pygame.draw.circle(screen,COLORS_LABELS.BLACK,(points[i][0] + 50,600 - points[i][1]),8)
+                pygame.draw.circle(screen,COLORS_LABELS.WHITE,(points[i][0] + 50,600 - points[i][1]),7)
+        except Exception as e:
+            print("Error: {}".format(e))
+    else:
+        try:
+            for i in range(len(labels)):    
+                pygame.draw.circle(screen,COLORS_LABELS[labels[i]],(points[i][0] + 50,600 - points[i][1]),7)
+        except Exception as e:
+            print("Error: {}".format(e))
 
 pygame.init()
 test = 0
@@ -64,7 +79,6 @@ while runing:
     x_mouse , y_mouse = pygame.mouse.get_pos()
     
     show_mouse = Show_mouse(x_mouse, y_mouse, font,colors.BLACK,screen)
-    print(type(screen))
     if (50 <= x_mouse <= 1100 and 50 <= y_mouse <= 600):
         show_mouse.show()
     
@@ -87,7 +101,6 @@ while runing:
     deleter_labels = font1.render("DELETE LABEL", True, colors.BLACK)
     reset_button = font1.render("RESET" , True, colors.BLACK)
     title = font3.render("Illustration of the k-nearest neighbors algorithm",True,colors.BLACK)
-    print(colors.BLACK)
     screen.blit(title,(200,600))
     # print(colors.BLACK)
     draw_ox_oy = Draw_ox_oy(50, 50, 50, 600, 50, 600, 1100, 600, colors.BLACK, up, ngang,screen)
@@ -96,7 +109,6 @@ while runing:
     #button n_clusters
     rect = draw_rect_backgroud(1225,20,170,50,colors)
     rect.show()
-    print(colors)
     # + -
     rect = draw_rect_backgroud(1225,80,80,50,colors)
     rect.show()
@@ -135,7 +147,6 @@ while runing:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            # import test
             check = True
             runing = False
 
@@ -148,8 +159,8 @@ while runing:
                     y = float(abs(y_mouse - 600))
                     point = [x,y]
                     points.append(point)
-            # 1225,140,170,50
-            elif (1225 <= x_mouse <= 1225 + 170 and 140 <= y_mouse <= 140 + 50):
+
+            if (1225 <= x_mouse <= 1225 + 170 and 140 <= y_mouse <= 140 + 50):
                 print("run kmeans")
                 try:
                     labels_index = []
@@ -160,35 +171,35 @@ while runing:
 
                     for i in range(len(labels)):
                         labels_index.append([points[i],labels[i]])
-                
-                except:
-                    print("Error")
-                    break
+
+                except Exception as e:
+                    print("Error : {}".format(e))
 
             if (1225 <= x_mouse <= 1225 + 80 and 80 <= y_mouse <= 80 + 50):
                 if (K_Kmeans >= 0 and K_Kmeans < 8):
                     K_Kmeans += 1
 
-            elif (1225 + 80 + 10 <= x_mouse <= 1225 + 80 + 10 + 80 and 80 <= y_mouse <= 80 + 50):
+            if (1225 + 80 + 10 <= x_mouse <= 1225 + 80 + 10 + 80 and 80 <= y_mouse <= 80 + 50):
                 if (0 < K_Kmeans <= 8):
                     K_Kmeans -= 1
 
             # 1225,260,80,50
-            elif (1225 <= x_mouse <= 1225 + 80 and 260 < y_mouse <= 260 + 50):
+            if (1225 <= x_mouse <= 1225 + 80 and 260 < y_mouse <= 260 + 50):
                 if (K_knn >= 0 and K_knn < len(points)):
                     K_knn += 1
 
             # 1225 + 50 + 40,260,80,50
-            elif (1225 + 50 + 40 <= x_mouse <= 1225 + 50 + 40 + 80 and 260 <= y_mouse <= 260 + 50):
+            if (1225 + 50 + 40 <= x_mouse <= 1225 + 50 + 40 + 80 and 260 <= y_mouse <= 260 + 50):
                 if (0 < K_knn <= len(points)):
                     K_knn -= 1
             #1225,320,170,50
-            elif (1225 <= x_mouse <= 1225 + 170 and 320 <= y_mouse <= 320 + 50):
-                print("Run KNN")
-                poins_news = []
-                results = []
-                list_point = []
+            if (1225 <= x_mouse <= 1225 + 170 and 320 <= y_mouse <= 320 + 50):
                 try:
+                    print("Run KNN")
+                    poins_news = []
+                    results = []
+                    list_point = []
+
                     for i in list_labels_news: # O(n)
                         list_distance_labels = []
                         for j in range(len(labels_index)): # O(n)
@@ -211,22 +222,22 @@ while runing:
                         results.append(label) 
                         labels_index.append([i,label])
                     K_knn = 0
-                except:
-                    print("Error")
+                except Exception as e:
+                    print("Error: {}".format(e))
                     break
             
             # 1225,380,170,50
-            elif (1225 <= x_mouse <= 1225 + 170 and 380 <= y_mouse <= 380 + 50):
-                print("deleter labels")
+            if (1225 <= x_mouse <= 1225 + 170 and 380 <= y_mouse <= 380 + 50):
                 try:
+                    print("deleter labels")                    
                     list_labels_news = []
                     results = []                    
-                except:
-                    print("Error")
+                except Exception as e:
+                    print("Error: {}".format(e))
                     break
                 
             # 1225,440,170,50
-            elif (1225 <= x_mouse <= 1225 + 170 and 440 <= y_mouse <= 440 + 50):
+            if (1225 <= x_mouse <= 1225 + 170 and 440 <= y_mouse <= 440 + 50):
                 try: 
                     list_labels_news = []
                     results = []
@@ -237,11 +248,10 @@ while runing:
                     test = 0
                     labels = []
                     print("Reset")
-                except:
-                    print("Error")
+                except Exception as e:
+                    print("Error: {}".format(e))
                     break
-            else:
-                ...                        
+
     k_knn = font1.render("K KNN = " + str(K_knn), True, colors.BLACK)
     K_Kmeans_button = font1.render("n_clusters = " + str(K_Kmeans), True, colors.BLACK)               
     name_button = Name_button(K_Kmeans_button,
@@ -255,22 +265,11 @@ while runing:
                               reset_button
                               )
     name_button.show_name_button()
-    for i in range(len(points)):
-        pygame.draw.circle(screen,colors.BLACK,(points[i][0] + 50,600 - points[i][1]),8)
-        pygame.draw.circle(screen,colors.WHITE,(points[i][0] + 50,600 - points[i][1]),7)
 
-    if (len(labels) != 0):
-        for i in range(len(points)):
-            pygame.draw.circle(screen,COLORS_LABELS[labels[i]],(points[i][0] + 50,600 - points[i][1]),7)
+    Check_and_show(labels,0,points,colors)
+    Check_and_show(labels,1,points,COLORS_LABELS)
+    Check_and_show(labels,0,list_labels_news,colors)
+    Check_and_show(results,1,list_labels_news,COLORS_LABELS)
 
-    if (len(list_labels_news) != 0):
-        for i in range(len(list_labels_news)):
-            pygame.draw.circle(screen,colors.BLACK,(list_labels_news[i][0] + 50,600 - list_labels_news[i][1]),8)
-            pygame.draw.circle(screen,colors.WHITE,(list_labels_news[i][0] + 50,600 - list_labels_news[i][1]),7)
-        
-    if (len(results) != 0):
-        for i in range(len(results)):
-            pygame.draw.circle(screen,COLORS_LABELS[results[i]],(list_labels_news[i][0] + 50, 600 - list_labels_news[i][1]),7)
-    
     pygame.display.flip()
 pygame.quit()
