@@ -54,7 +54,7 @@ class Draw_ox_oy:
         self.screen.blit(self.up,(44,32))    
         self.screen.blit(self.ngang,(1100,588))
 
-class Show_mouse:
+class Show_Mouse:
     def __init__(self,
         x_mouse: float = None,
         y_mouse: float = None,
@@ -71,7 +71,7 @@ class Show_mouse:
         text_mouse = self.font_mouse.render("(" + "x = " + str((self.x_mouse - 50)) + "," + "y = " + str(abs(self.y_mouse-600)) + ")",True,self.BLACK)
         self.screen.blit(text_mouse, (self.x_mouse + 10, self.y_mouse))
 
-class draw_rect_backgroud:
+class Draw_rect_backgroud:
     def __init__(self,
         x: float = None,
         y: float = None,

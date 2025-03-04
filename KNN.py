@@ -9,15 +9,15 @@ from algorithm import check_value
 from algorithm import Draw_ox_oy
 from algorithm import COLORS
 from algorithm import colors_init
-from algorithm import Show_mouse
-from algorithm import draw_rect_backgroud
+from algorithm import Show_Mouse
+from algorithm import Draw_rect_backgroud
 from algorithm import Draw_ox_oy
 from algorithm import screen
 
 colors = COLORS()
 COLORS_LABELS = colors_init(colors)
 
-class Name_button:
+class Name_Button:
     def __init__(self,
                  K_Kmeans_button: pygame.surface.Surface,
                 dau_cong: pygame.surface.Surface,
@@ -117,7 +117,7 @@ while runing:
     screen.fill(colors.BACKGROUND)
     x_mouse , y_mouse = pygame.mouse.get_pos()
     
-    show_mouse = Show_mouse(x_mouse, y_mouse, font,colors.BLACK,screen)
+    show_mouse = Show_Mouse(x_mouse, y_mouse, font,colors.BLACK,screen)
     if (50 <= x_mouse <= 1100 and 50 <= y_mouse <= 600):
         show_mouse.show()
     
@@ -146,42 +146,42 @@ while runing:
     draw_ox_oy.show()
 
     #button n_clusters
-    rect = draw_rect_backgroud(1225,20,170,50,colors)
+    rect = Draw_rect_backgroud(1225,20,170,50,colors)
     rect.show()
     # + -
-    rect = draw_rect_backgroud(1225,80,80,50,colors)
+    rect = Draw_rect_backgroud(1225,80,80,50,colors)
     rect.show()
-    rect = draw_rect_backgroud(1225 + 80 + 10,80,80,50,colors)
+    rect = Draw_rect_backgroud(1225 + 80 + 10,80,80,50,colors)
     rect.show()
 
     #button random
-    rect = draw_rect_backgroud(1225,140,170,50,colors)
+    rect = Draw_rect_backgroud(1225,140,170,50,colors)
     rect.show()
 
     #button thuat toan
-    rect = draw_rect_backgroud(1225,200,170,50,colors)
+    rect = Draw_rect_backgroud(1225,200,170,50,colors)
     rect.show()
 
     #- +
-    rect = draw_rect_backgroud(1225,260,80,50,colors)
+    rect = Draw_rect_backgroud(1225,260,80,50,colors)
     rect.show()
-    rect = draw_rect_backgroud(1225 + 50 + 40,260,80,50,colors)
+    rect = Draw_rect_backgroud(1225 + 50 + 40,260,80,50,colors)
     rect.show()
 
     #button RUN KNN
-    rect = draw_rect_backgroud(1225,320,170,50,colors)
+    rect = Draw_rect_backgroud(1225,320,170,50,colors)
     rect.show()
 
     #button deleter label
-    rect = draw_rect_backgroud(1225,380,170,50,colors)
+    rect = Draw_rect_backgroud(1225,380,170,50,colors)
     rect.show()
 
     #button reset
-    rect = draw_rect_backgroud(1225,440,170,50,colors)
+    rect = Draw_rect_backgroud(1225,440,170,50,colors)
     rect.show()
 
     #button Algorithm
-    rect = draw_rect_backgroud(1225,500,170,50,colors)
+    rect = Draw_rect_backgroud(1225,500,170,50,colors)
     rect.show()
 
     for event in pygame.event.get():
@@ -301,7 +301,7 @@ while runing:
 
     k_knn = font1.render("K KNN = " + str(K_knn), True, colors.BLACK)
     K_Kmeans_button = font1.render("n_clusters = " + str(K_Kmeans), True, colors.BLACK)               
-    name_button = Name_button(K_Kmeans_button,
+    name_button = Name_Button(K_Kmeans_button,
                               dau_cong,
                               dau_tru,
                             #   button_random,
